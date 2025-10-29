@@ -2,14 +2,11 @@ const express = require("express");
 const app = express();
 const PORT = 3001;
 
-// Example route
-app.get("/", (req, res) => {
-  res.send("Hello from myfliers.com!");
-});
+const bodyParser = require("body-parser");
 
-// Serve static files if you have a frontend build
-// app.use(express.static("public"));
+app.use(express.static("."));
+app.use("/api", require("./api/_index"));
 
 app.listen(PORT, () => {
-  console.log(`myfliers.com app running on port ${PORT}`);
+  console.log(`myfliers app running on port ${PORT}`);
 });
