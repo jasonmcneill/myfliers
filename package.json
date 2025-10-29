@@ -29,6 +29,7 @@
     "mysql2": "^3.15.3"
   },
   "devDependencies": {
+    "kill-port": "^2.0.1",
     "nodemon": "^3.1.10"
   }
 }

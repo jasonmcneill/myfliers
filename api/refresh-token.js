@@ -28,16 +28,14 @@ exports.POST = (req, res) => {
       const id = userdata.id;
       const sql = `
         SELECT
-          id,
+          userid,
           username,
-          status,
+          userstatus,
           firstname,
           lastname,
           email,
-          gender,
-          mailingList,
           lang,
-          subscribeduntil,
+          country,
           createdAt
         FROM
           users
@@ -60,30 +58,26 @@ exports.POST = (req, res) => {
             .send({ msg: "user not found", msgType: "error" });
         }
 
-        const id = result[0].id;
+        const userid = result[0].userid;
         const username = result[0].username;
-        const status = result[0].status;
+        const userstatus = result[0].userstatus;
         const firstname = result[0].firstname;
         const lastname = result[0].lastname;
         const email = result[0].email;
-        const gender = result[0].gender;
-        const mailingList = result[0].mailingList;
         const lang = result[0].lang;
-        const subscribeduntil = result[0].subscribeduntil;
+        const country = result[0].country;
         const createdAt = result[0].createdAt;
 
         const refreshToken = jsonwebtoken.sign(
           {
-            id: id,
+            userid: userid,
             username: username,
-            status: status,
+            userstatus: userstatus,
             firstname: firstname,
             lastname: lastname,
             email: email,
-            gender: gender,
-            mailingList: mailingList,
             lang: lang,
-            subscribeduntil: subscribeduntil,
+            country: country,
             createdAt: createdAt,
           },
           process.env.REFRESH_TOKEN_SECRET,
@@ -92,16 +86,14 @@ exports.POST = (req, res) => {
 
         const accessToken = jsonwebtoken.sign(
           {
-            id: id,
+            userid: userid,
             username: username,
-            status: status,
+            userstatus: userstatus,
             firstname: firstname,
             lastname: lastname,
             email: email,
-            gender: gender,
-            mailingList: mailingList,
             lang: lang,
-            subscribeduntil: subscribeduntil,
+            country: country,
             createdAt: createdAt,
           },
           process.env.ACCESS_TOKEN_SECRET,
