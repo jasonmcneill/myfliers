@@ -27,4 +27,7 @@ const authenticateToken = (req, res, next) => {
 const refreshToken = require("./refresh-token");
 router.post("/refresh-token", refreshToken.POST);
 
+const postermywall = require("./postermywall");
+router.get("/postermywall", postermywall.GET);
+
 module.exports = router;
