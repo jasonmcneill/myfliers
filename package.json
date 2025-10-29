@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "kill": "npx kill-port 3000",
+    "dev": "nodemon server.js",
+    "ssh:prod": "ssh root@172.236.250.102 -i ~/.ssh/usd21/id_rsa",
+    "deploy:prod": "npm run ssh:prod ./pull-mf.sh"
   },
   "repository": {
     "type": "git",
@@ -20,5 +24,8 @@
   "homepage": "https://github.com/jasonmcneill/myfliers#readme",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
