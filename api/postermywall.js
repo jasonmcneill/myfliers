@@ -2,11 +2,13 @@ exports.GET = async (req, res) => {
   const code = req.query.code;
   const state = req.query.state;
 
+  return res.status(200).send(req.query);
+
   // URL of this GET route is "/api/postermywall"
 
   // TODO:  check database for validity of state
   // TODO:  exchange code for JWT
-  const tokenResponse = await fetch('https://www.postermywall.com/api/oauth/token', {
+  const tokenResponse = await fetch('https://api.postermywall.com/v1/oauth/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
