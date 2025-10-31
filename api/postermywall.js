@@ -16,21 +16,28 @@ exports.GET = async (req, res) => {
     client_id: process.env.POSTERMYWALL_KEY
   });
 
-  fetch('https://api.postermywall.com/v1/oauth/token', {
-    method: 'POST',
-    body: params.toString(),
-    headers: new Headers({
-      content_type: 'application/x-www-form-urlencoded',
-      authorization: `Basic ${base64Credentials}`
-    })
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log('PosterMyWall OAuth Token Response:', data);
-      res.redirect(`https://myfliers.com/?pmw_access_token=${data.access_token}`);
-    })
-    .catch(error => {
-      console.error('Error fetching PosterMyWall OAuth token:', error);
-      res.status(500).send('Error during PosterMyWall OAuth process');
+  try {
+    const response = await fetch("https://api.postermywall.com/v1/oauth/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": `Basic ${base64Credentials}`
+      },
+      body: params.toString()
     });
-}
+
+    const data = await response.json();
+
+    console.log("PosterMyWall OAuth Token Response:", data);
+
+    if (data.access_token) {
+      res.redirect(`https://myfliers.com/?pmw_access_token=${data.access_token}`);
+    } else {
+      res.status(400).json({ error: data });
+    }
+
+  } catch (error) {
+    console.error("Error fetching PosterMyWall OAuth token:", error);
+    res.status(500).send("Error during PosterMyWall OAuth process");
+  }
+};
