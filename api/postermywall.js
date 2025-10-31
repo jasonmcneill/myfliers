@@ -10,5 +10,5 @@ exports.GET = (req, res) => {
   // TODO:  handle errors
   // TODO:  redirect user
 
-  return res.status(200).send({ msg: "ok", msgType: "success" });
+  return res.redirect(`/?userid=1&state=${state}`);
 }
