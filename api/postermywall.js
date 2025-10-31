@@ -7,6 +7,12 @@ exports.GET = async (req, res) => {
 
   fetch('https://api.postermywall.com/v1/oauth/token', {
     method: 'POST',
+    body: {
+      redirect_uri: "https://myfliers.com/api/postermywall",
+      grant_type: 'authorization_code',
+      code: code,
+      client_id: process.env.POSTERMYWALL_KEY,
+    },
     headers: new Headers({
       content_type: 'application/x-www-form-urlencoded',
       authorization: `Basic ${base64Credentials}`
