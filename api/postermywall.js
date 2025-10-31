@@ -22,7 +22,8 @@ exports.GET = async (req, res) => {
 
   if (!tokenResponse.ok) {
     const errorText = await tokenResponse.text();
-    throw new Error(`PosterMyWall token request failed: ${errorText}`);
+    console.log(errorText);
+    return res.redirect(process.env.FRONTEND_URL);
   }
 
   const tokenData = await tokenResponse.json();
@@ -33,6 +34,6 @@ exports.GET = async (req, res) => {
   // TODO:  store JWT in database (will be a perpetual refresh token and a short-lived access token)
   // TODO:  handle errors
   // TODO:  redirect user
-
-  return res.redirect(`${process.env.FRONTEND_URL}/?userid=1&state=${state}&token=${base64String}`);
+  const redirectUrl = `${process.env.FRONTEND_URL}/?userid=1&state=${state}&token=${base64String}`;
+  return res.redirect(redirectUrl);
 }
