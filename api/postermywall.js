@@ -12,12 +12,12 @@ exports.GET = async (req, res) => {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
-      client_id: process.env.POSTERMYWALL_KEY,
-      client_secret: process.env.POSTERMYWALL_SECRET,
       redirect_uri: 'https://myfliers.com/api/postermywall',
+      code: code,
       grant_type: 'authorization_code',
-      code: code
+      client_id: process.env.POSTERMYWALL_KEY,
     }),
+    authorization: `Basic ${Buffer.from(`${process.env.POSTERMYWALL_KEY}:${process.env.POSTERMYWALL_SECRET}`).toString('base64')}`
   });
 
   if (!tokenResponse.ok) {
