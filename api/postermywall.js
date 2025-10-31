@@ -5,6 +5,10 @@ exports.GET = async (req, res) => {
 
   const base64Credentials = Buffer.from(`${process.env.POSTERMYWALL_KEY}:${process.env.POSTERMYWALL_SECRET}`).toString('base64');
 
+  console.log("code:", code);
+  console.log("state:", state);
+  console.log("scope:", scope);
+
   fetch('https://api.postermywall.com/v1/oauth/token', {
     method: 'POST',
     body: {
