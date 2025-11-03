@@ -30,4 +30,7 @@ router.post("/refresh-token", refreshToken.POST);
 const postermywall = require("./postermywall");
 router.get("/postermywall", postermywall.GET);
 
+const canva = require("./canva");
+router.get("/canva", canva.GET);
+
 module.exports = router;
