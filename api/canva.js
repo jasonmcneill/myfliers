@@ -1,9 +1,3 @@
-exports.POST = async (req, res) => {
-  res.status(200).json({
-    msg: "Test",
-  });
-};
-
 exports.GET = async (req, res) => {
   const code = req.query.code ? req.query.code : '';
   const state = req.query.state ? req.query.state : '';
@@ -14,4 +8,6 @@ exports.GET = async (req, res) => {
   res.status(200).json({
     msg: "Canva GET endpoint",
   });
+
+  // Docs:  https://www.canva.dev/docs/connect/api-reference/authentication/generate-access-token/
 }
