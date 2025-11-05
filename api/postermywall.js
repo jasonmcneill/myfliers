@@ -5,10 +5,6 @@ exports.GET = async (req, res) => {
 
   const base64Credentials = Buffer.from(`${process.env.POSTERMYWALL_KEY}:${process.env.POSTERMYWALL_SECRET}`).toString('base64');
 
-  console.log("code:", code);
-  console.log("state:", state);
-  console.log("scope:", scope);
-
   const params = new URLSearchParams({
     redirect_uri: "https://myfliers.com/api/postermywall",
     grant_type: "authorization_code",
@@ -30,8 +26,19 @@ exports.GET = async (req, res) => {
 
     console.log("PosterMyWall OAuth Token Response:", data);
 
+    /*
+      Example response:
+      {
+        access_token: 'P4qfdKdetpdNWvESOvQ8EAyjmIuO',
+        token_type: 'Bearer',
+        expires_in: '863999',
+        refresh_token: 'Jn70mZrzsXRnePq6vg4GWfco36H64AAm',
+        user_id: '27778265'
+      }
+    */
+
     if (data.access_token) {
-      res.redirect(`https://myfliers.com/?pmw_access_token=${data.access_token}`);
+      res.redirect(`https://myfliers.com/`);
     } else {
       res.status(400).json({ error: data });
     }
