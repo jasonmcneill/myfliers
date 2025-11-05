@@ -31,6 +31,6 @@ const postermywall = require("./postermywall");
 router.get("/postermywall", postermywall.GET);
 
 const canva = require("./canva");
-router.get("/canva", canva.GET);
+router.post("/canva", canva.POST);
 
 module.exports = router;
