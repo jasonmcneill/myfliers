@@ -1,0 +1,9 @@
+Installation Instructions
+
+1. Create a folder named my-fliers in /wp-content/plugins/
+2. Save the PHP code as my-fliers.php in that folder
+3. Create a build subfolder
+4. Save the JavaScript as build/app.js
+5. Save the CSS as build/styles.css
+6. Activate the plugin in WordPress Admin > Plugins
+7. Access via "My Fliers" in the admin sidebar

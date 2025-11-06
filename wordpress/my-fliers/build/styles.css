@@ -1,0 +1,194 @@
+.my-fliers-container {
+    max-width: 1400px;
+    margin: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.my-fliers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+.my-fliers-header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #23282d;
+}
+
+.upload-section {
+    display: flex;
+    gap: 10px;
+}
+
+.upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2271b1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.upload-button:hover {
+    background: #135e96;
+}
+
+.message {
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.message-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 16px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.empty-state p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.fliers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.flier-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.flier-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.flier-image-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flier-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.flier-info {
+    padding: 16px;
+}
+
+.flier-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #666;
+}
+
+.flier-user {
+    font-weight: 600;
+    color: #23282d;
+}
+
+.flier-date {
+    color: #999;
+}
+
+.flier-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.button-view {
+    background: #f0f0f1;
+    color: #2271b1;
+    flex: 1;
+}
+
+.button-view:hover {
+    background: #dcdcde;
+}
+
+.button-delete {
+    background: #dc3545;
+    color: white;
+    flex: 1;
+}
+
+.button-delete:hover {
+    background: #c82333;
+}
+
+.button-delete:disabled {
+    background: #999;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .my-fliers-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .fliers-grid {
+        grid-template-columns: 1fr;
+    }
+}
