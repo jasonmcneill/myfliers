@@ -1,0 +1,23 @@
+meta {
+  name: create-group
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base-url}}/groups
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "groupName": "Test ICC",
+    "adminEmail": "test@usd21.org"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
