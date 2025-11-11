@@ -19,3 +19,15 @@ settings {
   encodeUrl: true
   timeout: 0
 }
+
+docs {
+  # Authorization Contract
+  
+  This endpoint must be called with a valid "Admin Pass" (JWT).
+  
+  The token's payload must contain:
+   - `"role": "admin"`
+   - `"groupID": <Integer>`
+    
+  The API will use the `groupId` from this token to associate the flier with the correct group.
+}

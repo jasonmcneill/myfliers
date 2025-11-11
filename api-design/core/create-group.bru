@@ -21,3 +21,14 @@ settings {
   encodeUrl: true
   timeout: 0
 }
+
+docs {
+  # Authorization Contract
+  
+  This endpoint must be called with a valid "Admin Pass" (JWT).
+  
+  The token's payload must contain:
+   - `"role": "admin"`
+    
+  The API will then create the group and return a new token with the `groudID`.
+}
