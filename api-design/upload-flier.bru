@@ -1,0 +1,21 @@
+meta {
+  name: upload-flier
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base-url}}/fliers
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  title: Awesome Dog Flier
+  flier: @file(/Users/matthew/Pictures/TICC/TICC_app_avatar.jpeg)
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
