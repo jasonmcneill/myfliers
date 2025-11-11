@@ -14,3 +14,15 @@ settings {
   encodeUrl: true
   timeout: 0
 }
+
+docs {
+  # Authorization Contract
+  
+  This endpoint must be called with a valid "Admin Pass" (JWT).
+  
+  The token's payload must contain:
+   - `"role": "admin"`
+   - `"groupID": <Integer>`
+    
+  The API will use the `role` and `groupID` from this token to authenticate that the user attempting to delete the flier is allowed to do so.
+}
