@@ -1,0 +1,16 @@
+meta {
+  name: delete-flier
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{base-url}}/fliers/123
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
