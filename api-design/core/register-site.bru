@@ -1,0 +1,39 @@
+meta {
+  name: register-site
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base-url}}/sites
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "siteName": "Test ICC",
+    "siteUrl": "https://testicc.org",
+    "adminEmail": "testicc@usd21.org",
+    "publicKey": "...",
+    "adapterMetadata": {
+      "adapterType": "wordpress",
+      "siteLanguage": "en-US",
+      "timezone": "America/Phoenix",
+      "wpAdminWhoInstalled": "pastor@usd21.org",
+      "pluginInstaller": "tech-guy@gmail.com",
+      "wordpressVersion": "1.1.1"
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  There's the required fields and an optional json field. The required stuff is site name, url, admin email, and public key. Things we need or it doesn't work. 
+  
+  Then we can have the optional json field called adapterMetadata that collects all that metadata that could be useful. And, in the future, if we need another adapter, idk like Squarespace, we can have different metadata in that optional field, or none at all if we want.
+}

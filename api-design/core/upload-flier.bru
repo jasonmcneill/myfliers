@@ -6,13 +6,20 @@ meta {
 
 post {
   url: {{base-url}}/fliers
-  body: multipartForm
+  body: json
   auth: inherit
 }
 
-body:multipart-form {
-  title: Awesome Dog Flier
-  flier: @file(/Users/matthew/Pictures/TICC/TICC_app_avatar.jpeg)
+body:json {
+  {
+    "title": "Awesome Dog Flier",
+    "urls": {
+      "thumbnail": "https://ticc.org/wp-content/uploads/flier-thumbnail.jpg",
+      "medium": "https://ticc.org/wp-content/uploads/flier-medium.jpg",
+      "large": "https://ticc.org/wp-content/uploads/flier-large.jpg"
+    },
+    "categories": {}
+  }
 }
 
 settings {
@@ -21,13 +28,5 @@ settings {
 }
 
 docs {
-  # Authorization Contract
-  
-  This endpoint must be called with a valid "Admin Pass" (JWT).
-  
-  The token's payload must contain:
-   - `"role": "admin"`
-   - `"groupID": <Integer>`
-    
-  The API will use the `groupId` from this token to associate the flier with the correct group.
+  This endpoint must be signed cryptographically with the private key paired with the public key saved to the site's data. 
 }

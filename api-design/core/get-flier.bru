@@ -14,14 +14,3 @@ settings {
   encodeUrl: true
   timeout: 0
 }
-
-docs {
-  # Authorization Contract
-  
-  This endpoint must be called with a valid "Admin Pass" (JWT) or "Disciple Pass".
-  
-  The token's payload must contain:
-   - `"groupID": <Integer>`
-    
-  The API will use the `groupID` from this token to authenticate whether the user is allowed to see this flier.
-}

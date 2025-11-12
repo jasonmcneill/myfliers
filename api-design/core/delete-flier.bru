@@ -6,7 +6,7 @@ meta {
 
 delete {
   url: {{base-url}}/fliers/123
-  body: json
+  body: none
   auth: inherit
 }
 
@@ -16,13 +16,5 @@ settings {
 }
 
 docs {
-  # Authorization Contract
-  
-  This endpoint must be called with a valid "Admin Pass" (JWT).
-  
-  The token's payload must contain:
-   - `"role": "admin"`
-   - `"groupID": <Integer>`
-    
-  The API will use the `role` and `groupID` from this token to authenticate that the user attempting to delete the flier is allowed to do so.
+  This endpoint must be signed cryptographically with the private key paired with the public key saved to the site's data. 
 }
