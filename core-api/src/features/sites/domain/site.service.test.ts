@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { SiteService } from './site.service.ts';
 import { InMemorySiteRepository } from '../adapters/in-memory.repository.ts'
-import { CreateSiteInput } from './site.types.ts';
+import { CreateSiteInput, SiteStatus } from './site.types.ts';
 
 describe('SiteService (Domain Logic)', () => {
   let repo: InMemorySiteRepository;
@@ -23,6 +23,19 @@ describe('SiteService (Domain Logic)', () => {
     const result = await service.registerSite(input);
 
     expect(result.siteName).toBe('test site');
+  })
+
+  it('should auto-validate "usd21" domains', async () => {
+    const input: CreateSiteInput = {
+      siteName: 'test site',
+      siteUrl: 'https://test-site.com',
+      adminEmail: 'test-admin@usd21.org',
+      publicKey: 'random publicKey',
+    }
+
+    const result = await service.registerSite(input);
+
+    expect(result.status).toBe(SiteStatus.Active);
   })
 
 });
