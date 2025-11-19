@@ -38,4 +38,17 @@ describe('SiteService (Domain Logic)', () => {
     expect(result.status).toBe(SiteStatus.Active);
   })
 
+  it('should set non-"usd21" domains to pending', async () => {
+    const input: CreateSiteInput = {
+      siteName: 'test site',
+      siteUrl: 'https://test-site.com',
+      adminEmail: 'test-admin@gmail.org',
+      publicKey: 'random publicKey',
+    }
+
+    const result = await service.registerSite(input);
+
+    expect(result.status).toBe(SiteStatus.Pending);
+  })
+
 });
