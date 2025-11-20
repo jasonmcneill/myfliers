@@ -7,46 +7,37 @@ describe('SiteService (Domain Logic)', () => {
   let repo: InMemorySiteRepository;
   let service: SiteService;
 
+  const defaultInput: CreateSiteInput = {
+    siteName: 'test site',
+    siteUrl: 'https://test-site.com',
+    adminEmail: 'test-admin@usd21.org',
+    publicKey: 'random publicKey',
+  };
+
   beforeEach(() => {
     repo = new InMemorySiteRepository();
     service = new SiteService(repo);
   });
 
   it('should create a new site', async () => {
-    const input: CreateSiteInput = {
-      siteName: 'test site',
-      siteUrl: 'https://test-site.com',
-      adminEmail: 'test-admin@usd21.org',
-      publicKey: 'random publicKey',
-    }
-
-    const result = await service.registerSite(input);
+    const result = await service.registerSite(defaultInput);
 
     expect(result.siteName).toBe('test site');
   })
 
   it('should auto-validate "usd21" domains', async () => {
-    const input: CreateSiteInput = {
-      siteName: 'test site',
-      siteUrl: 'https://test-site.com',
-      adminEmail: 'test-admin@usd21.org',
-      publicKey: 'random publicKey',
-    }
-
-    const result = await service.registerSite(input);
+    const result = await service.registerSite(defaultInput);
 
     expect(result.status).toBe(SiteStatus.Active);
   })
 
   it('should set non-"usd21" domains to pending', async () => {
-    const input: CreateSiteInput = {
-      siteName: 'test site',
-      siteUrl: 'https://test-site.com',
+    const nonValidEmailInput: CreateSiteInput = {
+      ...defaultInput,
       adminEmail: 'test-admin@gmail.org',
-      publicKey: 'random publicKey',
     }
 
-    const result = await service.registerSite(input);
+    const result = await service.registerSite(nonValidEmailInput);
 
     expect(result.status).toBe(SiteStatus.Pending);
   })
