@@ -1,3 +1,4 @@
+import { SiteAlreadyExistsError } from "./site.error";
 import { SiteRepository } from "./site.repository";
 import { CreateSiteInput, RepoCreateSiteInput, Site, SiteStatus } from "./site.types";
 

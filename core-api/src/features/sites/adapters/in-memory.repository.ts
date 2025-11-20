@@ -1,3 +1,4 @@
+import { SiteAlreadyExistsError } from "../domain/site.error.ts";
 import { SiteRepository } from "../domain/site.repository.ts";
 import { RepoCreateSiteInput, Site } from "../domain/site.types.ts";
 
@@ -9,7 +10,7 @@ export class InMemorySiteRepository implements SiteRepository {
       site.siteUrl === input.siteUrl
     );
     if (siteAlreadyExists) {
-      throw new Error("Site with this URL already exists");
+      throw new SiteAlreadyExistsError(input.siteUrl);
     }
 
     const newSite = {
