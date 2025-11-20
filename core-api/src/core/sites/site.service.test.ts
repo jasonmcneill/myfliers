@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { SiteService } from './site.service.ts';
-import { InMemorySiteRepository } from '../adapters/in-memory.repository.ts'
+import { InMemorySiteRepository } from './repositories/in-memory.repository.ts'
 import { CreateSiteInput, SiteStatus } from './site.types.ts';
 import { SiteAlreadyExistsError } from './site.error.ts';
 

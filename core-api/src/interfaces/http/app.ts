@@ -1,6 +1,6 @@
 import express from 'express'
-import { siteRouter } from './features/sites/adapters/http/site.router';
-import { globalErrorHandler } from './shared/middleware/error.middleware';
+import { siteRouter } from './routes/sites/site.router';
+import { globalErrorHandler } from './middleware/error.middleware';
 
 const app = express();
 

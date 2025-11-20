@@ -1,6 +1,6 @@
-import { SiteAlreadyExistsError } from "../domain/site.error.ts";
-import { SiteRepository } from "../domain/site.repository.ts";
-import { RepoCreateSiteInput, Site } from "../domain/site.types.ts";
+import { SiteAlreadyExistsError } from "../site.error.ts";
+import { SiteRepository } from "./site.repository.ts";
+import { RepoCreateSiteInput, Site } from "../site.types.ts";
 
 export class InMemorySiteRepository implements SiteRepository {
   private sites: Site[] = [];

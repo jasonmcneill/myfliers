@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { SiteError } from '../../features/sites/domain/site.error.ts'
+import { SiteError } from '../../../core/sites/site.error.ts'
 
 export const globalErrorHandler = (
   err: Error,

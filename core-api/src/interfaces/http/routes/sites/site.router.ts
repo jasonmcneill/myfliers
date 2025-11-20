@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { SiteController } from './site.controller.ts';
-import { SiteService } from '../../domain/site.service';
+import { SiteService } from '../../../../core/sites/site.service';
 
-import { InMemorySiteRepository } from '../../adapters/in-memory.repository.ts'
+import { InMemorySiteRepository } from '../../../../core/sites/repositories/in-memory.repository.ts'
 
 // Dependercy Injection
 const repo = new InMemorySiteRepository();

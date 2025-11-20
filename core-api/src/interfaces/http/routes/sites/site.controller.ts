@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from 'express'
-import { SiteService } from '../../domain/site.service.ts'
-import { CreateSiteInput } from '../../domain/site.types.ts';
+import { Request, Response, NextFunction } from "express";
+import { SiteService } from "../../../../core/sites/site.service.ts";
+import { CreateSiteInput } from "../../../../core/sites/site.types.ts";
 
 export class SiteController {
-  constructor(private readonly service: SiteService) { }
+  constructor(private readonly service: SiteService) {}
 
   // We need this closure (arrow function) to pass `this` context to express,
   // so that the code can register the site later
@@ -14,10 +14,9 @@ export class SiteController {
       const site = await this.service.registerSite(input);
 
       res.status(201).json({
-        success: true,
-        data: site,
+        status: site.status,
+        createdAt: site.createdAt,
       });
-
     } catch (error) {
       next(error);
     }
