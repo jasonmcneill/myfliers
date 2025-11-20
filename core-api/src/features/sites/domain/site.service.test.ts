@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { SiteService } from './site.service.ts';
 import { InMemorySiteRepository } from '../adapters/in-memory.repository.ts'
 import { CreateSiteInput, SiteStatus } from './site.types.ts';
+import { SiteAlreadyExistsError } from './site.error.ts';
 
 describe('SiteService (Domain Logic)', () => {
   let repo: InMemorySiteRepository;
@@ -40,6 +41,13 @@ describe('SiteService (Domain Logic)', () => {
     const result = await service.registerSite(nonValidEmailInput);
 
     expect(result.status).toBe(SiteStatus.Pending);
+  })
+
+  it('should throw an error on duplicate sites', async () => {
+    await service.registerSite(defaultInput);
+    await expect(service.registerSite(defaultInput))
+      .rejects
+      .toThrow(SiteAlreadyExistsError);
   })
 
 });
