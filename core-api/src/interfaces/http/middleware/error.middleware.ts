@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { SiteError } from '../../../core/sites/site.error.ts'
+import { SiteAlreadyExistsError, SiteError } from '../../../core/sites/site.error.ts'
 
 export const globalErrorHandler = (
   err: Error,
@@ -8,11 +8,7 @@ export const globalErrorHandler = (
   next: NextFunction
 ) => {
   if (err instanceof SiteError) {
-    return res.status(400).json({
-      success: false,
-      error: err.name,
-      message: err.message,
-    })
+    siteErrorHandler(err, res);
   }
 
   console.error('[System Error]', err);
@@ -20,4 +16,23 @@ export const globalErrorHandler = (
     success: false,
     message: 'Internal Server Error',
   });
+}
+
+const siteErrorHandler = (
+  err: Error,
+  res: Response
+) => {
+  if (err instanceof SiteAlreadyExistsError) {
+    return res.status(409).json({
+      success: false,
+      error: err.name,
+      message: err.message,
+    })
+  }
+
+  return res.status(400).json({
+    success: false,
+    error: err.name,
+    message: err.message,
+  })
 }
