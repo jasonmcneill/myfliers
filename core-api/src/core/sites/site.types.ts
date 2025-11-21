@@ -1,14 +1,9 @@
 // Internal representation of the site data
 export type Site = {
   id: string;
-  siteName: string;
-  siteUrl: string;
-  adminEmail: string;
-  publicKey: string;
   status: SiteStatus,
-  adapterMetadata?: Record<string, unknown>; // Generic json bucket
   createdAt: Date;
-};
+} & CreateSiteInput;
 
 // Data about the site that came from an adapter
 export type CreateSiteInput = {
