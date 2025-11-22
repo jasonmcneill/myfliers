@@ -1,7 +1,7 @@
 // Internal representation of the site data
 export type Site = {
   id: string;
-  status: SiteStatus,
+  status: SiteStatus;
   createdAt: Date;
 } & CreateSiteInput;
 
@@ -17,11 +17,11 @@ export type CreateSiteInput = {
 export type CreateSiteOutput = Promise<Site>;
 
 export enum SiteStatus {
-  Pending = 'pending',
-  Active = 'active',
+  Pending = "pending",
+  Active = "active",
 }
 
 // Appending additional internal data to the adapter data
 export type RepoCreateSiteInput = CreateSiteInput & {
   status: SiteStatus;
-}
+};
