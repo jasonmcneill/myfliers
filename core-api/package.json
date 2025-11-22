@@ -16,6 +16,7 @@
     "vitest": "^4.0.10"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "zod": "^4.1.12"
   }
 }
