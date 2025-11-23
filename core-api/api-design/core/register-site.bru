@@ -37,3 +37,56 @@ docs {
   
   Then we can have the optional json field called adapterMetadata that collects all that metadata that could be useful. And, in the future, if we need another adapter, idk like Squarespace, we can have different metadata in that optional field, or none at all if we want.
 }
+
+example {
+  name: Test ICC
+  
+  request: {
+    url: {{base-url}}/sites
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "siteName": "Test ICC",
+        "siteUrl": "https://testicc.org",
+        "adminEmail": "testicc@usd21.org",
+        "publicKey": "...",
+        "adapterMetadata": {
+          "adapterType": "wordpress",
+          "siteLanguage": "en-US",
+          "timezone": "America/Phoenix",
+          "wpAdminWhoInstalled": "pastor@usd21.org",
+          "pluginInstaller": "tech-guy@gmail.com",
+          "wordpressVersion": "1.1.1"
+        }
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      x-powered-by: Express
+      content-type: application/json; charset=utf-8
+      content-length: 58
+      etag: W/"3a-yQH9XN3itQxHNwTKA4H1zjO/Y14"
+      date: Sun, 23 Nov 2025 20:53:14 GMT
+      connection: keep-alive
+      keep-alive: timeout=5
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "active",
+          "createdAt": "2025-11-23T20:53:14.152Z"
+        }
+      '''
+    }
+  }
+}
