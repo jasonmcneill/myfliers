@@ -1,12 +1,12 @@
-import { SiteRepository } from "./repositories/site.repository";
+import { SiteRepository } from "./repositories/site.repository.ts";
 import {
   CreateSiteInput,
   RepoCreateSiteInput,
   Site,
   SiteStatus,
-} from "./site.types";
-import { makeSafe } from "../common/make-safe";
-import { CreateSiteInputSchema } from "./site.validation";
+} from "./site.types.ts";
+import { makeSafe } from "../common/make-safe.ts";
+import { CreateSiteInputSchema } from "./site.validation.ts";
 
 export class SiteService {
   constructor(private readonly repo: SiteRepository) {}

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import { SiteService } from "../../../../core/sites/site.service.ts";
 import { CreateSiteInput } from "../../../../core/sites/site.types.ts";
 

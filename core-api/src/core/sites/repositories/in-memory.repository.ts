@@ -5,7 +5,7 @@ import { RepoCreateSiteInput, Site } from "../site.types.ts";
 export class InMemorySiteRepository implements SiteRepository {
   private sites: Site[] = [];
 
-  async create(input: RepoCreateSiteInput): Promise<Site> {
+  create(input: RepoCreateSiteInput): Promise<Site> {
     const siteAlreadyExists = this.sites.find((site) =>
       site.siteUrl === input.siteUrl
     );
@@ -25,6 +25,6 @@ export class InMemorySiteRepository implements SiteRepository {
     this.sites.push(dbRecord);
 
     // Simulate DB returning copy of data
-    return structuredClone(dbRecord);
+    return Promise.resolve(structuredClone(dbRecord));
   }
 }

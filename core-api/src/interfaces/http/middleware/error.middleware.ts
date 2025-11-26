@@ -1,19 +1,18 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import {
   SiteAlreadyExistsError,
   SiteError,
 } from "../../../core/sites/site.error.ts";
-import { success, ZodError } from "zod";
+import { ZodError } from "zod";
 
 export const globalErrorHandler = (
   err: Error,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ) => {
   if (err instanceof ZodError) {
     return res.status(400).json({
-      success: false,
       message: "Bad Request",
     });
   }
@@ -23,7 +22,6 @@ export const globalErrorHandler = (
 
   console.error("[System Error]", err);
   return res.status(500).json({
-    success: false,
     message: "Internal Server Error",
   });
 };
@@ -31,14 +29,12 @@ export const globalErrorHandler = (
 const siteErrorHandler = (err: Error, res: Response) => {
   if (err instanceof SiteAlreadyExistsError) {
     return res.status(409).json({
-      success: false,
       error: err.name,
       message: err.message,
     });
   }
 
   return res.status(400).json({
-    success: false,
     error: err.name,
     message: err.message,
   });

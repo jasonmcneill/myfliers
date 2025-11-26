@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import supertest from "supertest";
-import { app } from "../../app";
-import { CreateSiteInput } from "../../../../core/sites/site.types";
+import { app } from "../../app.ts";
+import { CreateSiteInput } from "../../../../core/sites/site.types.ts";
 
 const request = supertest(app);
 

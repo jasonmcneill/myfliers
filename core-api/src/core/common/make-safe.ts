@@ -11,7 +11,7 @@ export const makeSafe = <Input, Output>(
   schema: z.ZodType<Input>,
   logic: (input: Input) => Promise<Output>,
 ) => {
-  return async (rawInput: unknown): Promise<Output> => {
+  return (rawInput: unknown): Promise<Output> => {
     const cleanInput = schema.parse(rawInput);
 
     return logic(cleanInput);

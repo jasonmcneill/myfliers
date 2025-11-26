@@ -1,4 +1,5 @@
-import { app } from "./interfaces/http/app";
+import { app } from "./interfaces/http/app.ts";
+import process from "node:process";
 
 const PORT = process.env.PORT || 3000;
 

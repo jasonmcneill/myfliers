@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CreateSiteInput } from "./site.types";
+import { CreateSiteInput } from "./site.types.ts";
 
 export const CreateSiteInputSchema = z.object({
   siteName: z.string(),
