@@ -21,7 +21,16 @@ export const generateEd25519KeyPair = (): KeyPair => {
   return { publicKey, privateKey };
 };
 
-export const isValidPublicKey = (pem: string): boolean => {
+export const isParseablePublicKey = (pem: string): boolean => {
+  try {
+    createPublicKey(pem);
+    return true;
+  } catch (_error) {
+    return false;
+  }
+};
+
+export const isEd25519Key = (pem: string): boolean => {
   try {
     const keyObject = createPublicKey(pem);
     return keyObject.asymmetricKeyType === "ed25519";

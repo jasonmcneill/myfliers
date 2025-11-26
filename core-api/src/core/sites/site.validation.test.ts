@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { ZodError } from "zod";
 import { CreateSiteInput } from "./site.types.ts";
 import { CreateSiteInputSchema } from "./site.validation.ts";
+import { SiteInputError } from "./site.error.ts";
 
 describe("Site Validation Testing", () => {
   const defaultInput: CreateSiteInput = {
@@ -19,8 +20,14 @@ describe("Site Validation Testing", () => {
       publicKey: "invalid public key",
     };
 
-    await expect(CreateSiteInputSchema.parseAsync(invalidPublicKeyInput))
-      .rejects
-      .toThrow(ZodError);
+    try {
+      await CreateSiteInputSchema.parseAsync(invalidPublicKeyInput);
+    } catch (err) {
+      const zErr = err as ZodError;
+      const hasCorrectError = zErr.issues.some(
+        (issue) => issue.message === SiteInputError.MissingPemHeader,
+      );
+      expect(hasCorrectError).toBe(true);
+    }
   });
 });
