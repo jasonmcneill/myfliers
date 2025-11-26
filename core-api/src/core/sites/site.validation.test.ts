@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { z, ZodError } from "zod";
+import { ZodError } from "zod";
 import { CreateSiteInput } from "./site.types.ts";
 import { CreateSiteInputSchema } from "./site.validation.ts";
 
@@ -8,11 +8,19 @@ describe("Site Validation Testing", () => {
     siteName: "evil site",
     siteUrl: "https://evil.com",
     adminEmail: "evil@evil.com",
-    publicKey: "evil public key",
+    publicKey: "-----BEGIN PUBLIC KEY-----\n" +
+      "MCowBQYDK2VwAyEAB3R5kkC5Xq0AHmkEA8wpfJ0YG56Psf/jPB1I0ioq/5I=\n" +
+      "-----END PUBLIC KEY-----",
   };
 
   it("should reject an invalid public key string", async () => {
-    await expect(CreateSiteInputSchema.safeParseAsync(defaultInput)).rejects
+    const invalidPublicKeyInput = {
+      ...defaultInput,
+      publicKey: "invalid public key",
+    };
+
+    await expect(CreateSiteInputSchema.parseAsync(invalidPublicKeyInput))
+      .rejects
       .toThrow(ZodError);
   });
 });

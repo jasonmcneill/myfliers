@@ -12,7 +12,9 @@ describe("SiteService (Domain Logic)", () => {
     siteName: "test site",
     siteUrl: "https://testsite.com",
     adminEmail: "testadmin@usd21.org",
-    publicKey: "random publicKey",
+    publicKey: "-----BEGIN PUBLIC KEY-----\n" +
+      "MCowBQYDK2VwAyEAB3R5kkC5Xq0AHmkEA8wpfJ0YG56Psf/jPB1I0ioq/5I=\n" +
+      "-----END PUBLIC KEY-----",
   };
 
   beforeEach(() => {

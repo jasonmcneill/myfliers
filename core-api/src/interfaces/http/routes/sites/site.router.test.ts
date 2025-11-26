@@ -10,7 +10,9 @@ describe("HTTP: POST /api/v1/sites", () => {
     siteName: "Tucson ICC",
     siteUrl: "https://ticc.org",
     adminEmail: "pastor@usd21.org",
-    publicKey: "---BEGIN PUBLIC KEY---...",
+    publicKey: "-----BEGIN PUBLIC KEY-----\n" +
+      "MCowBQYDK2VwAyEAB3R5kkC5Xq0AHmkEA8wpfJ0YG56Psf/jPB1I0ioq/5I=\n" +
+      "-----END PUBLIC KEY-----",
     adapterMetadata: {
       version: "1.0.0",
     },
