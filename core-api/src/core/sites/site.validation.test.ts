@@ -36,4 +36,22 @@ describe("Site Validation Testing", () => {
       .resolves
       .toBeDefined();
   });
+
+  it("should reject an invalid public key string", async () => {
+    const invalidPublicKeyWithPemHeader = {
+      ...defaultInput,
+      publicKey: "-----BEGIN PUBLIC KEY-----\ninvalid public key",
+    };
+
+    try {
+      await CreateSiteInputSchema.parseAsync(invalidPublicKeyWithPemHeader);
+    } catch (err) {
+      const zErr = err as ZodError;
+      const isCorrectError = zErr.issues.some(
+        (issue) => issue.message === SiteInputError.InvalidPublicKeyFormat,
+      );
+
+      expect(isCorrectError).toBe(true);
+    }
+  });
 });
