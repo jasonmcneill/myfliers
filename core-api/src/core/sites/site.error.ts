@@ -13,7 +13,7 @@ export class SiteAlreadyExistsError extends SiteError {
 }
 
 export enum SiteInputError {
-  MissingPemHeader = "Key must start with standard PEM header",
+  MissingPem = "Key must start and end with a standard PEM header/footer",
   InvalidPublicKeyFormat = "Not a valid PEM-encoded public key",
   InvalidPublicKeyType = "Not an ED25519 public key",
 }

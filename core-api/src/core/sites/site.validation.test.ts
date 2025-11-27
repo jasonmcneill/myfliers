@@ -25,7 +25,7 @@ describe("Site Validation Testing", () => {
     } catch (err) {
       const zErr = err as ZodError;
       const hasCorrectError = zErr.issues.some(
-        (issue) => issue.message === SiteInputError.MissingPemHeader,
+        (issue) => issue.message === SiteInputError.MissingPem,
       );
       expect(hasCorrectError).toBe(true);
     }
