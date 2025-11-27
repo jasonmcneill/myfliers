@@ -21,7 +21,7 @@ services:
     volumes:
     - ./:/app
     - /app/node_modules
-    command: sh -c "npm install && npm run test"
+    command: sh -c "npm install && npm run test:watch"
     
     develop:
       watch:
