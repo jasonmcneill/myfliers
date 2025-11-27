@@ -54,4 +54,24 @@ describe("Site Validation Testing", () => {
       expect(isCorrectError).toBe(true);
     }
   });
+
+  it("should reject a public key type that is not Ed25519", async () => {
+    const notEd25519PublicKeyInput = {
+      ...defaultInput,
+      publicKey: "-----BEGIN PUBLIC KEY-----\n" +
+        "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETzny6E1j0fbUrqa2aY4WopXx1SQLItMNeuLMbi3xJjOGTNZQMCUhAU8/wZggKYkbJUM6wW6v2/ox4lr6RjeukA==" +
+        "\n-----END PUBLIC KEY-----",
+    };
+
+    try {
+      await CreateSiteInputSchema.parseAsync(notEd25519PublicKeyInput);
+    } catch (err) {
+      const zErr = err as ZodError;
+      const isCorrectError = zErr.issues.some(
+        (issue) => issue.message === SiteInputError.InvalidPublicKeyType,
+      );
+
+      expect(isCorrectError).toBe(true);
+    }
+  });
 });
