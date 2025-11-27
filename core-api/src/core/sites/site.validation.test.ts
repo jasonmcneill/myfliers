@@ -40,7 +40,8 @@ describe("Site Validation Testing", () => {
   it("should reject an invalid public key string", async () => {
     const invalidPublicKeyWithPemHeader = {
       ...defaultInput,
-      publicKey: "-----BEGIN PUBLIC KEY-----\ninvalid public key",
+      publicKey:
+        "-----BEGIN PUBLIC KEY-----\ninvalid public key\n-----END PUBLIC KEY-----",
     };
 
     try {
