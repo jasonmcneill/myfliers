@@ -30,4 +30,10 @@ describe("Site Validation Testing", () => {
       expect(hasCorrectError).toBe(true);
     }
   });
+
+  it("should accept a valid public key string", async () => {
+    await expect(CreateSiteInputSchema.parseAsync(defaultInput))
+      .resolves
+      .toBeDefined();
+  });
 });
