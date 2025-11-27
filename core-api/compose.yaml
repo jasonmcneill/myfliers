@@ -1,22 +1,32 @@
 services:
-  # Service 1: Dev API Server
   api:
     build: .
     ports:
       - "3000:3000"
     volumes:
-      - ./:/app
-      # Prevent local node_modules from overriding container node_modules
-      - /app/node_modules
+    - ./:/app
+    - /app/node_modules
     environment:
       - NODE_ENV=development
     command: sh -c "npm install && npm run dev"
+    
+    develop:
+      watch:
+        - action: rebuild
+          path: ./package.json
 
-  # Service 2: Testing
   tests:
     build: .
-    volumes:
-      - ./:/app
-      - /app/node_modules
     profiles: ["test"]
+    volumes:
+    - ./:/app
+    - /app/node_modules
     command: sh -c "npm install && npm run test"
+    
+    develop:
+      watch:
+        - action: sync
+          path: ./tests
+          target: /app/tests
+        - action: rebuild
+          path: ./package.json
