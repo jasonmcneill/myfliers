@@ -4,7 +4,7 @@ import { SiteService } from "../../../../core/sites/site.service.ts";
 
 import { InMemorySiteRepository } from "../../../../core/sites/repositories/in-memory.repository.ts";
 
-// Dependercy Injection
+// Dependency Injection
 const repo = new InMemorySiteRepository();
 const service = new SiteService(repo);
 const controller = new SiteController(service);
