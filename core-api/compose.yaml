@@ -25,8 +25,5 @@ services:
     
     develop:
       watch:
-        - action: sync
-          path: ./tests
-          target: /app/tests
         - action: rebuild
           path: ./package.json
