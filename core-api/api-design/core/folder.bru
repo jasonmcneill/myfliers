@@ -1,0 +1,16 @@
+meta {
+  name: core
+  seq: 2
+}
+
+auth {
+  mode: none
+}
+
+docs {
+  # Core API
+  
+  The API requests inside this directory interact with the core API for the service. These endpoints are designed to be interface-agnostic, assuming that the caller is already authenticated and can provide a valid token (JWT).
+  
+  You should interact with the core API endpoints via adapters for each interface, used to authenticate and interact with the service.
+}

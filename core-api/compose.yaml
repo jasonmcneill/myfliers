@@ -1,0 +1,29 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+    - ./:/app
+    - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm install && npm run dev"
+    
+    develop:
+      watch:
+        - action: rebuild
+          path: ./package.json
+
+  tests:
+    build: .
+    profiles: ["test"]
+    volumes:
+    - ./:/app
+    - /app/node_modules
+    command: sh -c "npm install && npm run test:watch"
+    
+    develop:
+      watch:
+        - action: rebuild
+          path: ./package.json

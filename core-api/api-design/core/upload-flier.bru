@@ -1,0 +1,32 @@
+meta {
+  name: upload-flier
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base-url}}/fliers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Awesome Dog Flier",
+    "urls": {
+      "thumbnail": "https://ticc.org/wp-content/uploads/flier-thumbnail.jpg",
+      "medium": "https://ticc.org/wp-content/uploads/flier-medium.jpg",
+      "large": "https://ticc.org/wp-content/uploads/flier-large.jpg"
+    },
+    "categories": {}
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  This endpoint must be signed cryptographically with the private key paired with the public key saved to the site's data. 
+}

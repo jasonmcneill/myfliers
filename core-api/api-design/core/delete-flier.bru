@@ -1,0 +1,20 @@
+meta {
+  name: delete-flier
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{base-url}}/fliers/123
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  This endpoint must be signed cryptographically with the private key paired with the public key saved to the site's data. 
+}
